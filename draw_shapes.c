@@ -1,6 +1,25 @@
 #include <stdio.h>
 #include "draw.h"
 
+
+void print_arrow(char a)
+{
+
+  a-=0x20;
+  for(char row = 0; row <11; row++){
+    unsigned short rowBits = font_11x16[a][row];
+    
+    for(char col=0; col<16; col++){
+      unsigned short colMask = 1 << (15-col);
+      putchar((rowBits & colMask) ? '*' : ' ');
+    }
+    
+    putchar('\n');
+
+  }
+}
+
+
 /* Prints a size x size square whose left col is at startCol */
 void print_square(int leftCol, int size)
 {
